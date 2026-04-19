@@ -24,7 +24,8 @@ export default function Contact() {
     e.preventDefault()
     setStatus('loading')
     try {
-      const res = await axios.post('/api/contact', form)
+      const API = import.meta.env.VITE_API_URL || ''
+      const res = await axios.post(`${API}/api/contact`, form)
       setStatus('success')
       setMsg(res.data.message)
       setForm({ name: '', email: '', message: '' })
